@@ -16,16 +16,24 @@
 #include "_receive.h"
 #include "_config.h"
 
+#define S1  16
+#define S2  14
+
 MqttConnector *mqtt; 
 
 int relayPin = 26; 
 int relayPinState = HIGH;
 char myName[40];
+int x, y;
+uint32_t btCount = 0;
 
 void init_hardware()
 {
   pinMode(relayPin, OUTPUT);
   pinMode(2, OUTPUT);
+
+  pinMode(S1, INPUT_PULLUP);
+  pinMode(S2, INPUT_PULLUP);
 
   digitalWrite(relayPin, relayPinState);;
   // serial port initialization
@@ -60,5 +68,9 @@ void setup()
 
 void loop()
 {
+  if(digitalRead(S1) == 0) {
+    delay(200);
+    btCount += 1;
+  }
   mqtt->loop();
 }

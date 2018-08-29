@@ -28,9 +28,9 @@ void register_publish_hooks() {
     data["millis"] = millis();
     data["relayState"] = relayPinState;
     data["updateInterval"] = PUBLISH_EVERY;
-    data["x"] = x;
-    data["y"] = y;
-    data["btCount"] = btCount;
+//    data["x"] = x;
+//    data["y"] = y;
+//    data["btCount"] = btCount;
   }, PUBLISH_EVERY);
   mqtt->on_after_prepare_data([&](JsonObject * root) {
     /**************

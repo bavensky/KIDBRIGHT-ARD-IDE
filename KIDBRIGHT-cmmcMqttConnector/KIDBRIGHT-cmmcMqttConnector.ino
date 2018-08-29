@@ -71,6 +71,10 @@ void loop()
   if(digitalRead(S1) == 0) {
     delay(200);
     btCount += 1;
+    Serial.print("btCount = ");
+    Serial.println(btCount);
+//    void sync_advpub(String prefix, String topic, String payload, bool retain);
+    mqtt->sync_advpub("", "/nstda/gearname/kb", String(btCount), false);
   }
   mqtt->loop();
 }
